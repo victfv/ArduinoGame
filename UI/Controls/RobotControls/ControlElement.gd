@@ -7,24 +7,35 @@ onready var a = $A
 onready var b = $B
 onready var c = $C
 
+var da = 0
+var db = 0
+var dc = 0
+
 func _ready():
 	control.connect("deleted", self, "killed")
 	control.connect("nameChanged", self, "nameChanged")
 
 func getDataFromIndex(index) -> int:
-	a.text = str(control.dataA)
-	b.text = str(control.dataB)
-	c.text = str(control.dataC)
 	if control == null or !is_instance_valid(control):
 		return 0
 	match index:
 		0:
-			return control.dataA
+			return da
 		1:
-			return control.dataB
+			return db
 		2:
-			return control.dataC
+			return dc
 	return 0
+
+func _process(delta):
+	if (control != null):
+		da = control.dataA
+		db = control.dataB
+		dc = control.dataC
+	
+	$A/Val.text = str(da)
+	$B/Val.text = str(db)
+	$C/Val.text = str(dc)
 
 func updName(nm):
 	title = nm

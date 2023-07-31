@@ -4,6 +4,7 @@
 ControllerElement analog1(CTR_ANALOG2);
 ControllerElement button1(CTR_DIGITAL);
 ControllerElement button2(CTR_DIGITAL);
+ControllerElement pot(CTR_ANALOG1);
 
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
@@ -26,6 +27,7 @@ bool once0 = false;
 bool once1 = false;
 int ar0 = -5;
 int ar1 = -5;
+int pot0 = 0;
 
 bool buzzerOn = true;
 bool bonOnce = false;
@@ -45,7 +47,7 @@ void loop()
   {
     ar0 = analogRead(A0);
     ar1 = analogRead(A1);
-    analog1.sendData(analogRead(A1), analogRead(A0));
+    analog1.sendData(ar1, ar0);
   }
 
   if (digitalRead(7) == HIGH && !once0)
@@ -59,6 +61,11 @@ void loop()
     once0 = false;
   }
 
+  if (analogRead(A2) != pot0)
+  {
+    pot0 = analogRead(A2);
+    pot.sendData(pot0);
+  }
   /*if (digitalRead(3) == HIGH && !once1)
   {
     button2.sendData(digitalRead(3));

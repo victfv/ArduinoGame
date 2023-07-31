@@ -52,7 +52,7 @@ func updatePortsOptions():
 var portCounter = 0
 
 func _on_AddButton_pressed():
-	var port = cnPorts[port_select.selected]
+	var port = cnPorts[port_select.selected - 1]
 	var baud = baud_rate_line.text
 	if (port == ""):
 		port = "COM3"
