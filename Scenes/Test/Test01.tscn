@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Test/CTRLTest.gd" type="Script" id=2]
+
+[sub_resource type="SpatialMaterial" id=4]
+
+[sub_resource type="CylinderMesh" id=1]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 1.0
+
+[sub_resource type="SpatialMaterial" id=3]
+
+[sub_resource type="SphereMesh" id=2]
+radius = 0.2
+height = 0.4
+
+[node name="Test01" type="Spatial"]
+
+[node name="CTRLTest" type="Spatial" parent="."]
+script = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="CTRLTest"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+material_override = SubResource( 4 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+
+[node name="MeshInstance2" type="MeshInstance" parent="CTRLTest"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03338, 0 )
+material_override = SubResource( 3 )
+mesh = SubResource( 2 )
+skeleton = NodePath("../..")
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.860724, 0.509071, 0, -0.509071, 0.860724, 0, 2.09746, 2.88442 )
+current = true
