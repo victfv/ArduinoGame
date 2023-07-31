@@ -62,5 +62,7 @@ func getControl(control):
 
 func _on_CloseButton_pressed():
 	portInterface.Close()
+	for ch in $Panel/MarginContainer/VBoxContainer/ScrollContainer/ControlsBox.get_children():
+		ch._on_DeleteButton_pressed()
 	portInterface.queue_free()
 	queue_free()

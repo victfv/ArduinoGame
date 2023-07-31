@@ -41,4 +41,5 @@ func addConnection(index, obj, fromIndex):
 
 func removeConnection(index):
 	if connections.has(index):
+		print("cn erased")
 		connections.erase(index)

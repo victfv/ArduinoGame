@@ -25,17 +25,34 @@ func connectionError(port):
 const timerTime = 0.2
 var checkTimer = timerTime
 
+var cnPorts : PoolStringArray = []
+
 func _process(delta):
 	checkTimer = max(0.0, checkTimer - delta)
 	if (checkTimer == 0.0):
 		for p in ports_container.get_children():
 			p.testPort()
 		checkTimer = timerTime
+		
+		updatePortsOptions()
+
+onready var port_select = $Panel/VBoxContainer/PortAdderBar/PortSelect
+
+func updatePortsOptions():
+	if cnPorts != $Ports.getPortNames():
+		cnPorts = $Ports.getPortNames()
+		port_select.clear()
+		port_select.add_item("None", 0)
+		var id = 1
+		for port in cnPorts:
+			port_select.add_item(port, id)
+			id += 1
+	
 
 var portCounter = 0
 
 func _on_AddButton_pressed():
-	var port = port_line.text
+	var port = cnPorts[port_select.selected]
 	var baud = baud_rate_line.text
 	if (port == ""):
 		port = "COM3"
@@ -87,3 +104,7 @@ func addControlElementNode(ctrl):
 
 func addInputNode(newName) -> Object:
 	return robot_control.addInputNode(newName)
+
+
+func _on_PortSelect_item_selected(index):
+	$Panel/VBoxContainer/PortAdderBar/AddButton.disabled = index == 0

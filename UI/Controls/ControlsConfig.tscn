@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UI/Controls/ControlsConfig.gd" type="Script" id=1]
 [ext_resource path="res://UI/Controls/RobotControls/RobotControl.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/Controls/Ports.cs" type="Script" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Close"
@@ -60,8 +61,8 @@ tracks/2/keys = {
 [node name="ControlsConfig" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 1280.0
-margin_bottom = 720.0
+margin_right = 2560.0
+margin_bottom = 1440.0
 mouse_filter = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -88,11 +89,22 @@ alignment = 1
 margin_left = 19.0
 margin_right = 122.0
 margin_bottom = 48.0
+disabled = true
 text = "Add controller"
 
-[node name="PortLine" type="LineEdit" parent="Panel/VBoxContainer/PortAdderBar"]
+[node name="PortSelect" type="OptionButton" parent="Panel/VBoxContainer/PortAdderBar"]
 margin_left = 126.0
 margin_right = 254.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 128, 0 )
+text = "None"
+items = [ "None", null, false, 0, null ]
+selected = 0
+
+[node name="PortLine" type="LineEdit" parent="Panel/VBoxContainer/PortAdderBar"]
+visible = false
+margin_left = 143.0
+margin_right = 271.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 128, 0 )
 placeholder_text = "Port"
@@ -107,7 +119,7 @@ placeholder_text = "Baud rate"
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer"]
 margin_top = 52.0
 margin_right = 406.0
-margin_bottom = 720.0
+margin_bottom = 2160.0
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
@@ -136,6 +148,7 @@ margin_bottom = 60.0
 text = "<<"
 
 [node name="Ports" type="Node" parent="."]
+script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 4.0
@@ -143,4 +156,5 @@ anims/Close = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
 [connection signal="pressed" from="Panel/VBoxContainer/PortAdderBar/AddButton" to="." method="_on_AddButton_pressed"]
+[connection signal="item_selected" from="Panel/VBoxContainer/PortAdderBar/PortSelect" to="." method="_on_PortSelect_item_selected"]
 [connection signal="pressed" from="Panel/OpenArrow/MarginContainer/CloseButton" to="." method="_on_Button_pressed"]

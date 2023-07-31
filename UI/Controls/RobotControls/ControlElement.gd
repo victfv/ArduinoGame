@@ -30,7 +30,7 @@ func updName(nm):
 	title = nm
 
 func killed():
-	emit_signal("close_request")
+	get_parent().emit_signal("delete_nodes_request", [self])
 	queue_free()
 
 func _on_Name_text_changed(new_text):
