@@ -72,14 +72,14 @@ func _on_AddButton_pressed():
 	cPortUI.portInterface = cPort
 	ports_container.add_child(cPortUI)
 
-func sendDataAll(health, energy, cargo):
+func sendDataAll(health, energy, cargo, throttle, speed):
 	for cn in ports_container.get_children():
-		cn.sendInfo(health, energy, cargo)
+		cn.sendInfo(health, energy, cargo, throttle, speed)
 
-func sendData(health, energy, cargo, interface):
+func sendData(health, energy, cargo, interface, throttle, speed):
 	for cn in ports_container.get_children():
 		if cn.getName() == "_" + interface:
-			cn.sendInfo(health, energy, cargo)
+			cn.sendInfo(health, energy, cargo, throttle, speed)
 
 func getControl(port, control):
 	var arr = [0,0,0]

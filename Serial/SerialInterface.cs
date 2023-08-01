@@ -223,13 +223,17 @@ public class SerialInterface : Node
     }
   }
 
-  public void SendStatus(int health, int energy, int cargo)
+  public void SendStatus(int health, int energy, int cargo, int throttle, int speed)
   {
     String sendString = Convert.ToString(health);
     sendString += ":";
     sendString += Convert.ToString(energy);
     sendString += ":";
     sendString += Convert.ToString(cargo);
+    sendString += ":";
+    sendString += Convert.ToString(throttle);
+    sendString += ":";
+    sendString += Convert.ToString(speed);
     sendString += ":\0";
     //GD.PrintErr("Sending message \"" + sendString + "\'");
     SendMessage(sendString);

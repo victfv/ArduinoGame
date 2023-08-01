@@ -3,7 +3,8 @@
 
 ControllerElement analog1(CTR_ANALOG2);
 ControllerElement button1(CTR_DIGITAL);
-ControllerElement button2(CTR_DIGITAL);
+ControllerElement brk(CTR_DIGITAL);
+//ControllerElement button2(CTR_DIGITAL);
 ControllerElement pot(CTR_ANALOG1);
 
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
@@ -16,11 +17,13 @@ void setup() {
   Serial.begin(74880);
   Serial.setTimeout(1);
   lcd.begin(16, 2);
-  lcd.print("HLT:");
-  lcd.setCursor(7, 0);
-  lcd.print(" NRG:");
+  lcd.print("H:");
+  lcd.setCursor(6, 0);
+  lcd.print("N:");
   lcd.setCursor(0, 1);
-  lcd.print("Cargo:");
+  lcd.print("C:");
+  lcd.setCursor(7, 1);
+  lcd.print("S:");
 }
 
 bool once0 = false;
@@ -50,20 +53,24 @@ void loop()
     analog1.sendData(ar1, ar0);
   }
 
-  if (digitalRead(7) == HIGH && !once0)
+  bool btn = digitalRead(7) == HIGH;
+  if (btn && !once0)
   {
-    button1.sendData(digitalRead(7));
+    button1.sendData(int(btn));
+    brk.sendData(int(!btn));
     once0 = true;
   }
-  if (once0 && digitalRead(7) == LOW)
+  if (!btn)
   {
-    button1.sendData(digitalRead(7));
+    button1.sendData(btn);
+    brk.sendData(int(!btn));
     once0 = false;
   }
 
-  if (analogRead(A2) != pot0)
+  int potP = analogRead(A2);
+  if (potP != pot0)
   {
-    pot0 = analogRead(A2);
+    pot0 = potP;
     pot.sendData(pot0);
   }
   /*if (digitalRead(3) == HIGH && !once1)
@@ -87,22 +94,28 @@ void loop()
   //rec = Serial.readString();
   //Serial.print(rec);
   //analogWrite(5, rec.toInt());;
-  int health = StatusReader::getHealth();
-  if (health < 1000)
+  int health = StatusReader::getHealth()/10;
+  if (health < 100)
   {
-    lcd.setCursor(7, 0);
+    lcd.setCursor(4, 0);
     lcd.print(" ");
-    if (health < 100)
+    if (health < 10)
     {
-      lcd.setCursor(6, 0);
+      lcd.setCursor(3, 0);
       lcd.print(" ");
-      if (health < 10)
-      {
-        lcd.setCursor(5, 0);
-        lcd.print(" ");
-      }
     }
   }
+
+
+  float spd = float(StatusReader::getSpeed()) / 1000.0;
+  /*lcd.setCursor(11, 0);
+  lcd.print(" ");
+  if (spd < 10)
+  {
+    lcd.setCursor(10, 0);
+    lcd.print(" ");
+  }*/
+
   if (health < 10 && buzzerOn)
   {
     switch(beepState)
@@ -145,12 +158,18 @@ void loop()
     bonOnce = false;
   }
 
-  lcd.setCursor(4, 0);
-  lcd.print(String(health));
+  lcd.setCursor(2, 0);
+  lcd.print(health);
 
-  lcd.setCursor(12, 0);
+  lcd.setCursor(8, 0);
   lcd.print(StatusReader::getEnergy());
 
-  lcd.setCursor(6, 1);
+  lcd.setCursor(2, 1);
   lcd.print(StatusReader::getCargo());
+
+  lcd.setCursor(9, 1);
+  lcd.print(spd);
+
+  lcd.setCursor(12, 0);
+  lcd.print((float(potP)/1023.0) * 2.0 - 1.0);
 }

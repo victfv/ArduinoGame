@@ -25,11 +25,15 @@ class StatusReader
     static int getHealth();
     static int getEnergy();
     static int getCargo();
+	  static int getThrottle();
+	  static int getSpeed();
   
   protected:
     static int health;
     static int energy;
     static int cargo;
+	  static int throttle;
+	  static int speed;
 
 };
 

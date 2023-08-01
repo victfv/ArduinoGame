@@ -84,11 +84,12 @@ transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0
 mesh = SubResource( 3 )
 
 [node name="SpotLight" type="SpotLight" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.140484, 0.452694, 0.41501 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.140484, 0.403458, 0.379837 )
+light_energy = 4.0
 light_bake_mode = 0
 shadow_enabled = true
-spot_range = 20.0
-spot_attenuation = 2.07053
+spot_range = 10.0
+spot_attenuation = 3.73213
 spot_angle_attenuation = 0.517632
 
 [node name="Camera" type="Camera" parent="."]

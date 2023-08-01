@@ -6,8 +6,11 @@ var cargo = 0
 
 var throttle = 0.0
 var turn = 0.0
-var torque = 28.0
-var maxSpeed = 2.0
+var brk = 0.0
+var torque = 30.0
+var maxSpeed = 3.0
+
+var spd = 0.0
 
 onready var b_wheel_r = $BWheelR
 onready var b_wheel_l = $BWheelL
@@ -22,16 +25,19 @@ func _ready():
 	nd = ControlsConfig.addInputNode("Movement")
 	nd.addInput("Throttle", 1, -1, 1)
 	nd.addInput("Steering", 1, -1, 1)
+	nd.addInput("Break", 1, 0, 1)
 
 func _process(delta):
 	throttle = clamp(nd.getControl(0), -1, 1)#float(Input.is_action_pressed("ui_up")) - float(Input.is_action_pressed("ui_down"))
 	turn = clamp(nd.getControl(1), -1, 1)#float(Input.is_action_pressed("ui_left")) - float(Input.is_action_pressed("ui_right"))
-	ControlsConfig.sendDataAll(health, energy, cargo)
+	brk = clamp(nd.getControl(2), 0, 1)
+	ControlsConfig.sendDataAll(health, energy, cargo, int(throttle * 100), int(spd * 100))
 
 func _physics_process(delta):
-	var spd = linear_velocity.project(global_transform.basis.z.normalized()).length()
+	spd = linear_velocity.project(global_transform.basis.z.normalized()).length()
 	engine_force = throttle * (torque - clamp(spd/maxSpeed,0,1) * torque)
 	steering = lerp(steering, turn * (PI/4), delta * 3.0)
+	brake = brk * 0.5
 	prevVel = linear_velocity
 
 

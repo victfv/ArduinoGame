@@ -61,8 +61,8 @@ tracks/2/keys = {
 [node name="ControlsConfig" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 2560.0
-margin_bottom = 1440.0
+margin_right = 3840.0
+margin_bottom = 2160.0
 mouse_filter = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -119,7 +119,7 @@ placeholder_text = "Baud rate"
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer"]
 margin_top = 52.0
 margin_right = 406.0
-margin_bottom = 2160.0
+margin_bottom = 2880.0
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 

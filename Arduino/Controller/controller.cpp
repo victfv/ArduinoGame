@@ -5,6 +5,8 @@ int ControllerElement::cIndex = 0;
 int StatusReader::health = 0;
 int StatusReader::energy = 0;
 int StatusReader::cargo = 0;
+int StatusReader::throttle = 0;
+int StatusReader::speed = 0;
 
 ControllerElement::ControllerElement(celType type)
 {
@@ -54,6 +56,10 @@ void StatusReader::readStatus()
           case 2:
             cargo = val;
             break;
+          case 3:
+            throttle = val;
+          case 4:
+            speed = val;
         }
         stage += 1;
         iBuff = "";
@@ -76,4 +82,13 @@ int StatusReader::getEnergy()
 int StatusReader::getCargo()
 {
   return cargo;
+}
+
+int StatusReader::getThrottle()
+{
+  return throttle;
+}
+int StatusReader::getSpeed()
+{
+  return speed;
 }
