@@ -47,8 +47,8 @@ func getName() -> String:
 		return "_" + $Panel/MarginContainer/VBoxContainer/NameBox/NameLine.text
 	return "ERRNOTINTREE"
 
-func sendInfo(health : int, energy : int, cargo : int):
-	portInterface.SendStatus(health,energy,cargo)
+func sendInfo(health : int, energy : int, cargo : int, throttle : int, speed : int):
+	portInterface.SendStatus(health,energy,cargo, throttle, speed)
 
 func getControl(control):
 	for ctrl in controls_box.get_children():
@@ -62,5 +62,7 @@ func getControl(control):
 
 func _on_CloseButton_pressed():
 	portInterface.Close()
+	for ch in $Panel/MarginContainer/VBoxContainer/ScrollContainer/ControlsBox.get_children():
+		ch._on_DeleteButton_pressed()
 	portInterface.queue_free()
 	queue_free()

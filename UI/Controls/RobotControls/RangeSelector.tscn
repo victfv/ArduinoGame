@@ -17,31 +17,44 @@ text = "ControlName"
 [node name="Label" type="Label" parent="."]
 margin_left = 88.0
 margin_top = 17.0
-margin_right = 116.0
+margin_right = 131.0
 margin_bottom = 31.0
-text = "Min:"
+text = " | Min:"
 
 [node name="MinLine" type="LineEdit" parent="."]
-margin_left = 120.0
-margin_right = 178.0
+margin_left = 135.0
+margin_right = 193.0
 margin_bottom = 48.0
 text = "0"
 
 [node name="Label2" type="Label" parent="."]
-margin_left = 182.0
+margin_left = 197.0
 margin_top = 17.0
-margin_right = 212.0
+margin_right = 227.0
 margin_bottom = 31.0
 text = "Max:"
 
 [node name="MaxLine" type="LineEdit" parent="."]
-margin_left = 216.0
-margin_right = 274.0
+margin_left = 231.0
+margin_right = 289.0
 margin_bottom = 48.0
 text = "1"
 
 [node name="ToRange" type="Label" parent="."]
-margin_left = 278.0
+margin_left = 293.0
 margin_top = 17.0
-margin_right = 278.0
+margin_right = 293.0
 margin_bottom = 31.0
+
+[node name="DZ" type="Label" parent="."]
+margin_left = 297.0
+margin_top = 17.0
+margin_right = 380.0
+margin_bottom = 31.0
+text = " | Deadzone:"
+
+[node name="DeadzoneLine" type="LineEdit" parent="."]
+margin_left = 384.0
+margin_right = 442.0
+margin_bottom = 48.0
+text = "0.1"
