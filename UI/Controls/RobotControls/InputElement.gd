@@ -9,6 +9,9 @@ var connections = {}
 
 var addSlot = 0
 func addInput(inputName, type, rangeMin, rangeMax):
+	for c in get_children():
+		if c.getName() == inputName:
+			return
 	match type:
 		0:
 			var current = dig

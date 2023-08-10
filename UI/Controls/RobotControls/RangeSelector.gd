@@ -3,6 +3,9 @@ extends HBoxContainer
 func setName(newName):
 	$Name.text = newName
 
+func getName():
+	return $Name.text
+
 var rngMin = -1.0
 var rngMax = 1.0
 

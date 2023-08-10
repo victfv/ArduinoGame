@@ -8,3 +8,6 @@ func getIn(val):
 
 func setName(newName):
 	$Name.text = newName
+
+func getName():
+	return $Name.text

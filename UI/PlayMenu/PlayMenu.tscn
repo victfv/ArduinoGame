@@ -38,6 +38,7 @@ stretch_mode = 6
 size = Vector2( 360, 288 )
 fxaa = true
 render_target_v_flip = true
+shadow_atlas_size = 4096
 
 [node name="Cave" parent="Viewport" instance=ExtResource( 1 )]
 

@@ -383,11 +383,23 @@
 			"from_port": 0,
 			"to": "reroute_12",
 			"to_port": 0
+		},
+		{
+			"from": "reroute_12",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 6
+		},
+		{
+			"from": "reroute_6",
+			"from_port": 0,
+			"to": "colorize_9",
+			"to_port": 0
 		}
 	],
 	"label": "Graph",
 	"longdesc": "",
-	"name": "@@322",
+	"name": "322",
 	"node_position": {
 		"x": 0,
 		"y": 0
@@ -1029,8 +1041,8 @@
 		{
 			"name": "reroute_6",
 			"node_position": {
-				"x": 2681.117676,
-				"y": 365.541595
+				"x": 2552.117676,
+				"y": 373.541595
 			},
 			"parameters": {
 
@@ -1328,14 +1340,45 @@
 		{
 			"name": "reroute_12",
 			"node_position": {
-				"x": 2877.521729,
-				"y": 61.486938
+				"x": 2845.521729,
+				"y": 120.486938
 			},
 			"parameters": {
 
 			},
 			"seed_int": 0,
 			"type": "reroute"
+		},
+		{
+			"name": "colorize_9",
+			"node_position": {
+				"x": 2625.373535,
+				"y": 351.748138
+			},
+			"parameters": {
+				"gradient": {
+					"interpolation": 1,
+					"points": [
+						{
+							"a": 1,
+							"b": 0,
+							"g": 0,
+							"pos": 0.681818,
+							"r": 0
+						},
+						{
+							"a": 1,
+							"b": 1,
+							"g": 1,
+							"pos": 0.936364,
+							"r": 1
+						}
+					],
+					"type": "Gradient"
+				}
+			},
+			"seed_int": 0,
+			"type": "colorize"
 		}
 	],
 	"parameters": {

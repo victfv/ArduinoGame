@@ -13,12 +13,6 @@
 			"to_port": 0
 		},
 		{
-			"from": "colorize",
-			"from_port": 0,
-			"to": "blend2",
-			"to_port": 2
-		},
-		{
 			"from": "uniform",
 			"from_port": 0,
 			"to": "blend2",
@@ -61,28 +55,10 @@
 			"to_port": 1
 		},
 		{
-			"from": "blend2_2",
-			"from_port": 0,
-			"to": "colorize_5",
-			"to_port": 0
-		},
-		{
 			"from": "colorize_5",
 			"from_port": 0,
 			"to": "blend2",
 			"to_port": 1
-		},
-		{
-			"from": "blend2_2",
-			"from_port": 0,
-			"to": "colorize_6",
-			"to_port": 0
-		},
-		{
-			"from": "colorize",
-			"from_port": 0,
-			"to": "blend2_3",
-			"to_port": 2
 		},
 		{
 			"from": "colorize_6",
@@ -95,12 +71,6 @@
 			"from_port": 0,
 			"to": "blend2_3",
 			"to_port": 0
-		},
-		{
-			"from": "colorize",
-			"from_port": 0,
-			"to": "blend2_4",
-			"to_port": 2
 		},
 		{
 			"from": "perlin_5",
@@ -127,12 +97,6 @@
 			"to_port": 4
 		},
 		{
-			"from": "colorize",
-			"from_port": 0,
-			"to": "colorize_9",
-			"to_port": 0
-		},
-		{
 			"from": "colorize_9",
 			"from_port": 0,
 			"to": "Material",
@@ -155,19 +119,74 @@
 			"from_port": 0,
 			"to": "blend2_4",
 			"to_port": 1
+		},
+		{
+			"from": "reroute",
+			"from_port": 0,
+			"to": "colorize_9",
+			"to_port": 0
+		},
+		{
+			"from": "reroute",
+			"from_port": 0,
+			"to": "blend2",
+			"to_port": 2
+		},
+		{
+			"from": "reroute",
+			"from_port": 0,
+			"to": "blend2_3",
+			"to_port": 2
+		},
+		{
+			"from": "reroute",
+			"from_port": 0,
+			"to": "blend2_4",
+			"to_port": 2
+		},
+		{
+			"from": "colorize",
+			"from_port": 0,
+			"to": "gaussian_blur",
+			"to_port": 0
+		},
+		{
+			"from": "colorize",
+			"from_port": 0,
+			"to": "reroute",
+			"to_port": 0
+		},
+		{
+			"from": "reroute_2",
+			"from_port": 0,
+			"to": "colorize_5",
+			"to_port": 0
+		},
+		{
+			"from": "reroute_2",
+			"from_port": 0,
+			"to": "colorize_6",
+			"to_port": 0
+		},
+		{
+			"from": "colorize_3",
+			"from_port": 0,
+			"to": "reroute_2",
+			"to_port": 0
 		}
 	],
 	"label": "Graph",
 	"longdesc": "",
-	"name": "@@6685",
+	"name": "6685",
 	"node_position": {
 		"x": 0,
 		"y": 0
 	},
 	"nodes": [
 		{
+			"export_last_target": "Godot/Godot 3 Spatial",
 			"export_paths": {
-
+				"Godot/Godot 3 Spatial": "C:/Users/victf/Documents/GitHub/ArduinoGame/textures/PaintedMetal/PaintedMetal"
 			},
 			"name": "Material",
 			"node_position": {
@@ -189,7 +208,7 @@
 				"metallic": 1,
 				"normal": 1,
 				"roughness": 1,
-				"size": 9,
+				"size": 10,
 				"sss": 1
 			},
 			"seed_int": 0,
@@ -198,40 +217,40 @@
 		{
 			"name": "perlin",
 			"node_position": {
-				"x": -658.5,
-				"y": -15.5
+				"x": -1161.44458,
+				"y": -35.638889
 			},
 			"parameters": {
-				"iterations": 8,
-				"persistence": 0.75,
-				"scale_x": 7,
-				"scale_y": 7
+				"iterations": 9,
+				"persistence": 0.6,
+				"scale_x": 18,
+				"scale_y": 18
 			},
-			"seed_int": 2785035520,
+			"seed_int": 2287787776,
 			"type": "perlin"
 		},
 		{
 			"name": "colorize",
 			"node_position": {
-				"x": -401.5,
-				"y": 28.5
+				"x": -916.944458,
+				"y": -45.111115
 			},
 			"parameters": {
 				"gradient": {
-					"interpolation": 1,
+					"interpolation": 0,
 					"points": [
 						{
 							"a": 1,
 							"b": 1,
 							"g": 1,
-							"pos": 0.409091,
+							"pos": 0.234718,
 							"r": 1
 						},
 						{
 							"a": 1,
 							"b": 0,
 							"g": 0,
-							"pos": 0.436364,
+							"pos": 0.507445,
 							"r": 0
 						}
 					],
@@ -292,8 +311,8 @@
 			"generic_size": 1,
 			"name": "blend2_2",
 			"node_position": {
-				"x": -553.5,
-				"y": 358.5
+				"x": -609.5,
+				"y": 433.5
 			},
 			"parameters": {
 				"amount1": 1,
@@ -451,17 +470,17 @@
 						},
 						{
 							"a": 1,
-							"b": 0.515625,
-							"g": 0.515625,
+							"b": 0.492188,
+							"g": 0.492188,
 							"pos": 0.627273,
-							"r": 0.515625
+							"r": 0.492188
 						},
 						{
 							"a": 1,
-							"b": 1,
-							"g": 1,
+							"b": 0.789062,
+							"g": 0.789062,
 							"pos": 1,
-							"r": 1
+							"r": 0.789062
 						}
 					],
 					"type": "Gradient"
@@ -531,9 +550,9 @@
 			"parameters": {
 				"color": {
 					"a": 1,
-					"b": 0.308594,
-					"g": 0.308594,
-					"r": 0.308594,
+					"b": 0.167436,
+					"g": 0.167436,
+					"r": 0.167436,
 					"type": "Color"
 				}
 			},
@@ -550,7 +569,7 @@
 				"buffer": 1,
 				"param2": 0,
 				"size": 10,
-				"strength": 0.35
+				"strength": 0.1
 			},
 			"seed_int": 0,
 			"type": "normal_map2"
@@ -559,7 +578,7 @@
 			"generic_size": 1,
 			"name": "blend2_4",
 			"node_position": {
-				"x": 115.5,
+				"x": 114.5,
 				"y": 394.5
 			},
 			"parameters": {
@@ -603,10 +622,10 @@
 						},
 						{
 							"a": 1,
-							"b": 0.460938,
-							"g": 0.460938,
+							"b": 0.507812,
+							"g": 0.507812,
 							"pos": 1,
-							"r": 0.460938
+							"r": 0.507812
 						}
 					],
 					"type": "Gradient"
@@ -676,6 +695,44 @@
 			},
 			"seed_int": 0,
 			"type": "colorize"
+		},
+		{
+			"name": "reroute",
+			"node_position": {
+				"x": -348.805573,
+				"y": -17.919182
+			},
+			"parameters": {
+
+			},
+			"seed_int": 0,
+			"type": "reroute"
+		},
+		{
+			"name": "gaussian_blur",
+			"node_position": {
+				"x": -648.125488,
+				"y": -37.920837
+			},
+			"parameters": {
+				"param0": 9,
+				"param1": 1.5,
+				"param2": 0
+			},
+			"seed_int": 0,
+			"type": "gaussian_blur"
+		},
+		{
+			"name": "reroute_2",
+			"node_position": {
+				"x": -301.125488,
+				"y": 386.079163
+			},
+			"parameters": {
+
+			},
+			"seed_int": 0,
+			"type": "reroute"
 		}
 	],
 	"parameters": {
