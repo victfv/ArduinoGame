@@ -1,7 +1,7 @@
 extends Node
 
 var inputParts = {}
-var parts = [{"type" : "light", "level" : 3, "slot" : 0}]
+var parts = [{"type" : "omni", "level" : 3, "slot" : 0}]
 
 #parts:
 #{"type" : "light", "level" : 1, "slot" : 2}
