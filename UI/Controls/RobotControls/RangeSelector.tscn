@@ -38,7 +38,7 @@ text = "Max:"
 margin_left = 231.0
 margin_right = 289.0
 margin_bottom = 48.0
-text = "1"
+text = "1024"
 
 [node name="ToRange" type="Label" parent="."]
 margin_left = 293.0

@@ -7,8 +7,8 @@ var cargo = 0
 var throttle = 0.0
 var turn = 0.0
 var brk = 0.0
-var torque = 300.0
-var maxSpeed = 3.0
+var torque = 400.0
+var maxSpeed = 3.6
 
 var spd = 0.0
 
@@ -41,12 +41,12 @@ func spawnParts():
 			"omni":
 				curr = omni.instance()
 			_:
-				return
+				continue
 		
 		if $PartSlots.get_child_count() <= part.slot:
 			printerr("Part slot out of range")
 			curr.queue_free()
-			return
+			continue
 		var slot = $PartSlots.get_child(part.slot)
 		slot.add_child(curr)
 		curr.transform.origin = Vector3()
@@ -59,7 +59,7 @@ func _process(delta):
 	turn = clamp(nd.getControl(1), -1, 1)#float(Input.is_action_pressed("ui_left")) - float(Input.is_action_pressed("ui_right"))
 	brk = clamp(nd.getControl(2), 0, 1)
 	
-	if OS.is_debug_build() and true:
+	if OS.is_debug_build() and ControlsConfig.debugControls:
 		throttle = Input.get_axis("ui_down", "ui_up")
 		turn = Input.get_axis("ui_right", "ui_left")
 		brk = float(Input.is_action_pressed("ui_select"))
@@ -79,4 +79,4 @@ func _on_PlayerRobot_body_entered(body):
 	if (contactVel > 0.4):
 		var dmg = int(contactVel * 30)
 		health = max(0.0, health - dmg)
-		print(dmg)
+		#print(dmg)

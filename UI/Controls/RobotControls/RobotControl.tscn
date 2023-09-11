@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://UI/Controls/RobotControls/RobotControl.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0.498039 )
+
+[sub_resource type="Theme" id=4]
 
 [node name="RobotControl" type="Control"]
 anchor_right = 1.0
@@ -12,10 +17,12 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 32.0
+custom_styles/panel = SubResource( 3 )
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = SubResource( 4 )
 custom_constants/margin_right = 32
 custom_constants/margin_top = 32
 custom_constants/margin_left = 32
@@ -26,6 +33,7 @@ margin_left = 32.0
 margin_top = 32.0
 margin_right = 1216.0
 margin_bottom = 688.0
+custom_styles/bg = SubResource( 3 )
 right_disconnects = true
 scroll_offset = Vector2( 0, -32 )
 
@@ -40,4 +48,5 @@ text = ">>"
 [connection signal="connection_request" from="Panel/MarginContainer/ControlsGraph" to="." method="_on_ControlsGraph_connection_request"]
 [connection signal="delete_nodes_request" from="Panel/MarginContainer/ControlsGraph" to="." method="_on_ControlsGraph_delete_nodes_request"]
 [connection signal="disconnection_request" from="Panel/MarginContainer/ControlsGraph" to="." method="_on_ControlsGraph_disconnection_request"]
+[connection signal="gui_input" from="Panel/MarginContainer/ControlsGraph" to="." method="_on_ControlsGraph_gui_input"]
 [connection signal="pressed" from="Panel/Button" to="." method="_on_Button_pressed"]

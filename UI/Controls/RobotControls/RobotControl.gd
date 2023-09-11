@@ -4,9 +4,13 @@ onready var controls_graph = $Panel/MarginContainer/ControlsGraph
 
 func _ready():
 	set_process(false)
+	yield(get_tree().create_timer(0.4), "timeout")
+	_on_Button_pressed()
 
 
 func _on_ControlsGraph_connection_request(from, from_slot, to, to_slot):
+	if from == to:
+		return
 	for cn in controls_graph.get_connection_list():
 		if cn.to == to and cn.to_port == to_slot:
 			controls_graph.disconnect_node(cn.from, cn.from_port, to, to_slot)
@@ -30,7 +34,7 @@ func _process(delta):
 		panel.rect_position.x = lerp(panel.rect_position.x, panel.rect_size.x, delta * 20.0)
 		$Panel/Button.text = "<<"
 		if (panel.rect_position.x > (panel.rect_size.x - 0.001)):
-			print(str(panel.rect_position.x) + " > " + str(panel.rect_size.x - 0.001))
+			#print(str(panel.rect_position.x) + " > " + str(panel.rect_size.x - 0.001))
 			set_process(false)
 	else:
 		panel.rect_position.x = lerp(panel.rect_position.x, 32, delta * 20.0)
@@ -60,3 +64,10 @@ func _on_ControlsGraph_delete_nodes_request(nodes):
 			if connection.from == node.name or connection.to == node.name:
 				_on_ControlsGraph_disconnection_request(connection.from, connection.from_port, connection.to, connection.to_port)
 		node.queue_free()
+
+
+func _on_ControlsGraph_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == 2 and !event.pressed:
+			var axis = load("res://UI/Controls/RobotControls/Axis.tscn").instance()
+			controls_graph.add_child(axis)

@@ -8,13 +8,13 @@ const dig = preload("res://UI/Controls/RobotControls/DigitalInput.tscn")
 var connections = {}
 
 var addSlot = 0
-func addInput(inputName, type, rangeMin, rangeMax):
+func addInput(inputName, type, rangeMin = -1, rangeMax = 1):
 	for c in get_children():
 		if c.getName() == inputName:
 			return
 	match type:
 		0:
-			var current = dig
+			var current = dig.instance()
 			current.setName(inputName)
 			add_child(current)
 			set_slot(addSlot, true, 0, "ababab", false, 0, Color.white)

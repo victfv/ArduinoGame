@@ -24,7 +24,7 @@ func _process(delta):
 	tmr = max(tmr - delta, 0.0)
 	if (tmr < 0.001):
 		print("Health: " + str(health))
-		ControlsConfig.sendData(health, 50, 30, "Controller 0")
+		#ControlsConfig.sendData(health, 50, 30, "Controller 0")
 		tmr = 0.1
 		health -= 1;
 		if (health < 0):

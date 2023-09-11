@@ -1,5 +1,7 @@
 extends KinematicBody
 
+var type = "omni"
+
 func setLevel(level):
 	print("lvl:" + str(level))
 	match level:

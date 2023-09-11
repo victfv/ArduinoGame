@@ -15,8 +15,12 @@ func setRange(rangeMin, rangeMax):
 	$ToRange.text = " to: " + str(rangeMin) + " up to " + str(rangeMax)
 
 func getInRange(val) -> float:
-	var ret = range_lerp(val, int($MinLine.text), int($MaxLine.text), rngMin, rngMax)
-	if (abs(ret) < int($DeadzoneLine.text)):
+	var rmin = int($MinLine.text)
+	var rmax = int($MaxLine.text)
+	if (rmin == rmax):
+		return 0.0
+	var ret = range_lerp(val, rmin, rmax, rngMin, rngMax)
+	if (abs(ret) < float($DeadzoneLine.text)):
 		return 0.0
 	else:
 		return ret

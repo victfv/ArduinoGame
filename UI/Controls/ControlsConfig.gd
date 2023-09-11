@@ -1,5 +1,7 @@
 extends Control
 
+const debugControls = false
+
 func _enter_tree():
 	rect_size = get_viewport().size
 	get_parent().connect("child_entered_tree", self, "reorder")
@@ -26,6 +28,9 @@ const timerTime = 0.2
 var checkTimer = timerTime
 
 var cnPorts : PoolStringArray = []
+
+func _ready():
+	_on_Button_pressed()
 
 func _process(delta):
 	checkTimer = max(0.0, checkTimer - delta)

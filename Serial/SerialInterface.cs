@@ -90,14 +90,14 @@ public class SerialInterface : Node
         catch (IOException)
         {
             _serialPort.Close();
-            GD.PrintErr("IO exception when reading bytes.");
+            //GD.PrintErr("IO exception when reading bytes.");
             EmitSignal("connectionError", port);
             btr = 0;
         }
         catch (InvalidOperationException)
         {
             _serialPort.Close();
-            GD.PrintErr("Invalid op exception when reading bytes.");
+            //GD.PrintErr("Invalid op exception when reading bytes.");
             EmitSignal("connectionError");
             btr = 0;
         }
@@ -106,18 +106,19 @@ public class SerialInterface : Node
             //GD.Print("Reading existing");
             string b = "";
 
-
             string a = _serialPort.ReadExisting();
             int index = 0;
             int type = 0;
             int dataA = 0;
             int dataB = 0;
             int dataC = 0;
+            //GD.Print(a);
 
             if (a != null && a != "")
             {
                 int stt = 0;
                 char stage = 'N';
+                bool sent = false;
                 //GD.Print(a + "END\n");
                 for (int i = 0; i < a.Length; i++)
                 {
@@ -132,6 +133,7 @@ public class SerialInterface : Node
                                 case 'A':
                                 case 'B':
                                 case 'C':
+                                    sent = false;
                                     //GD.Print("Set stage:" + stage);
                                     stage = a[i];
                                     break;
@@ -141,7 +143,11 @@ public class SerialInterface : Node
                                 case '\n':
                                 case '\0':
                                 case '\r':
-                                    EmitSignal("controlReceived", index, type, dataA, dataB, dataC);
+                                    if (!sent)
+                                    {
+                                        EmitSignal("controlReceived", index, type, dataA, dataB, dataC);
+                                        sent = true;
+                                    }
                                     //GD.Print("Sending data");
                                     break;
                                 default:
@@ -208,18 +214,18 @@ public class SerialInterface : Node
         }
         catch (InvalidOperationException)
         {
-            GD.PrintErr("Invalid operation exception in send message");
+            //GD.PrintErr("Invalid operation exception in send message");
             InitializeSerialPort();
         }
         catch (IOException)
         {
-            GD.PrintErr("IO exception in send message");
+            //GD.PrintErr("IO exception in send message");
             InitializeSerialPort();
         }
     }
     else
     {
-        GD.PrintErr("Port null or closed");
+        //GD.PrintErr("Port null or closed");
     }
   }
 
@@ -241,7 +247,10 @@ public class SerialInterface : Node
 
   public bool GetConnected()
   {
-    return _serialPort.IsOpen;
+    if (_serialPort != null)
+        return _serialPort.IsOpen;
+    else
+        return false;
   }
 
   public void Close()

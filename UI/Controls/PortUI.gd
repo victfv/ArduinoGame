@@ -26,7 +26,6 @@ func _on_AcceptButton_pressed():
 func controlReceived(index, type, dataA, dataB, dataC):
 	for ctrl in controls_box.get_children():
 		if (ctrl.index == index):
-			ctrl.type = type
 			ctrl.dataA = dataA
 			ctrl.dataB = dataB
 			ctrl.dataC = dataC

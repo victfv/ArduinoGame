@@ -1,0 +1,434 @@
+{
+	"connections": [
+		{
+			"from": "fbm2",
+			"from_port": 0,
+			"to": "blend2",
+			"to_port": 0
+		},
+		{
+			"from": "perlin",
+			"from_port": 0,
+			"to": "blend2",
+			"to_port": 1
+		},
+		{
+			"from": "bricks",
+			"from_port": 1,
+			"to": "fill_to_random_grey",
+			"to_port": 0
+		},
+		{
+			"from": "blend2",
+			"from_port": 0,
+			"to": "blend2_2",
+			"to_port": 0
+		},
+		{
+			"from": "blend2_2",
+			"from_port": 0,
+			"to": "blend2_3",
+			"to_port": 0
+		},
+		{
+			"from": "normal_map2",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 4
+		},
+		{
+			"from": "gaussian_blur",
+			"from_port": 0,
+			"to": "blend2_3",
+			"to_port": 1
+		},
+		{
+			"from": "colorize",
+			"from_port": 0,
+			"to": "gaussian_blur",
+			"to_port": 0
+		},
+		{
+			"from": "gaussian_blur",
+			"from_port": 0,
+			"to": "blend2_5",
+			"to_port": 0
+		},
+		{
+			"from": "perlin_3",
+			"from_port": 0,
+			"to": "blend2_5",
+			"to_port": 1
+		},
+		{
+			"from": "colorize_2",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 0
+		},
+		{
+			"from": "fill_to_random_grey",
+			"from_port": 0,
+			"to": "blend2_2",
+			"to_port": 1
+		},
+		{
+			"from": "bricks",
+			"from_port": 0,
+			"to": "colorize",
+			"to_port": 0
+		},
+		{
+			"from": "perlin_2",
+			"from_port": 0,
+			"to": "warp",
+			"to_port": 1
+		},
+		{
+			"from": "blend2_3",
+			"from_port": 0,
+			"to": "warp",
+			"to_port": 0
+		},
+		{
+			"from": "warp",
+			"from_port": 0,
+			"to": "normal_map2",
+			"to_port": 0
+		},
+		{
+			"from": "blend2_5",
+			"from_port": 0,
+			"to": "warp_2",
+			"to_port": 0
+		},
+		{
+			"from": "perlin_2",
+			"from_port": 0,
+			"to": "warp_2",
+			"to_port": 1
+		},
+		{
+			"from": "warp_2",
+			"from_port": 0,
+			"to": "colorize_2",
+			"to_port": 0
+		}
+	],
+	"label": "Graph",
+	"longdesc": "",
+	"name": "@@322",
+	"node_position": {
+		"x": 0,
+		"y": 0
+	},
+	"nodes": [
+		{
+			"export_last_target": "Godot/Godot 3 Spatial",
+			"export_paths": {
+				"Godot/Godot 3 Spatial": "C:/Users/victf/Documents/GitHub/ArduinoGame/textures/SandBricks/SandBricks"
+			},
+			"name": "Material",
+			"node_position": {
+				"x": 708.222229,
+				"y": -188.305557
+			},
+			"parameters": {
+				"albedo_color": {
+					"a": 1,
+					"b": 1,
+					"g": 1,
+					"r": 1,
+					"type": "Color"
+				},
+				"ao": 1,
+				"depth_scale": 0.5,
+				"emission_energy": 1,
+				"flags_transparent": true,
+				"metallic": 0,
+				"normal": 1,
+				"roughness": 1,
+				"size": 9,
+				"sss": 1
+			},
+			"seed_int": 0,
+			"type": "material"
+		},
+		{
+			"name": "fbm2",
+			"node_position": {
+				"x": -1144,
+				"y": -112
+			},
+			"parameters": {
+				"folds": 0,
+				"iterations": 5,
+				"noise": 3,
+				"offset": 0,
+				"persistence": 0.5,
+				"scale_x": 2,
+				"scale_y": 2
+			},
+			"seed_int": 3744324352,
+			"type": "fbm2"
+		},
+		{
+			"generic_size": 1,
+			"name": "blend2",
+			"node_position": {
+				"x": -850,
+				"y": 79
+			},
+			"parameters": {
+				"amount1": 0.31,
+				"blend_type1": 0
+			},
+			"seed_int": 0,
+			"type": "blend2"
+		},
+		{
+			"name": "perlin",
+			"node_position": {
+				"x": -1121,
+				"y": 156
+			},
+			"parameters": {
+				"iterations": 8,
+				"persistence": 0.8,
+				"scale_x": 4,
+				"scale_y": 4
+			},
+			"seed_int": 0,
+			"type": "perlin"
+		},
+		{
+			"name": "normal_map2",
+			"node_position": {
+				"x": 394,
+				"y": 44
+			},
+			"parameters": {
+				"buffer": 1,
+				"param2": 0,
+				"size": 10,
+				"strength": 1
+			},
+			"seed_int": 0,
+			"type": "normal_map2"
+		},
+		{
+			"name": "bricks",
+			"node_position": {
+				"x": -1105,
+				"y": 306
+			},
+			"parameters": {
+				"bevel": 0.09,
+				"columns": 4,
+				"corner": 0.3,
+				"mortar": 0.01,
+				"pattern": 0,
+				"repeat": 1,
+				"round": 0,
+				"row_offset": 0.5,
+				"rows": 6
+			},
+			"seed_int": 0,
+			"type": "bricks3"
+		},
+		{
+			"name": "fill_to_random_grey",
+			"node_position": {
+				"x": -862,
+				"y": 350
+			},
+			"parameters": {
+				"edgecolor": 1
+			},
+			"seed_int": 0,
+			"type": "fill_to_random_grey2"
+		},
+		{
+			"generic_size": 1,
+			"name": "blend2_2",
+			"node_position": {
+				"x": -347,
+				"y": 260
+			},
+			"parameters": {
+				"amount1": 0.36,
+				"blend_type1": 0
+			},
+			"seed_int": 0,
+			"type": "blend2"
+		},
+		{
+			"generic_size": 1,
+			"name": "blend2_3",
+			"node_position": {
+				"x": -61,
+				"y": 140
+			},
+			"parameters": {
+				"amount1": 1,
+				"blend_type1": 2
+			},
+			"seed_int": 0,
+			"type": "blend2"
+		},
+		{
+			"name": "perlin_2",
+			"node_position": {
+				"x": -325.888031,
+				"y": 429.324799
+			},
+			"parameters": {
+				"iterations": 6,
+				"persistence": 0.7,
+				"scale_x": 10,
+				"scale_y": 10
+			},
+			"seed_int": 0,
+			"type": "perlin"
+		},
+		{
+			"name": "gaussian_blur",
+			"node_position": {
+				"x": -334.897644,
+				"y": 83.006668
+			},
+			"parameters": {
+				"param0": 10,
+				"param1": 4.8,
+				"param2": 0
+			},
+			"seed_int": 0,
+			"type": "gaussian_blur"
+		},
+		{
+			"name": "colorize",
+			"node_position": {
+				"x": -541.925415,
+				"y": 78.006653
+			},
+			"parameters": {
+				"gradient": {
+					"interpolation": 1,
+					"points": [
+						{
+							"a": 1,
+							"b": 0,
+							"g": 0,
+							"pos": 0.322613,
+							"r": 0
+						},
+						{
+							"a": 1,
+							"b": 1,
+							"g": 1,
+							"pos": 0.49534,
+							"r": 1
+						}
+					],
+					"type": "Gradient"
+				}
+			},
+			"seed_int": 0,
+			"type": "colorize"
+		},
+		{
+			"name": "colorize_2",
+			"node_position": {
+				"x": 446.214264,
+				"y": -171.478714
+			},
+			"parameters": {
+				"gradient": {
+					"interpolation": 1,
+					"points": [
+						{
+							"a": 1,
+							"b": 0.166626,
+							"g": 0.301166,
+							"pos": 0,
+							"r": 0.46875
+						},
+						{
+							"a": 1,
+							"b": 0.337952,
+							"g": 0.580585,
+							"pos": 1,
+							"r": 0.882812
+						}
+					],
+					"type": "Gradient"
+				}
+			},
+			"seed_int": 0,
+			"type": "colorize"
+		},
+		{
+			"generic_size": 1,
+			"name": "blend2_5",
+			"node_position": {
+				"x": -64.924988,
+				"y": -181.699524
+			},
+			"parameters": {
+				"amount1": 0.6,
+				"blend_type1": 2
+			},
+			"seed_int": 0,
+			"type": "blend2"
+		},
+		{
+			"name": "perlin_3",
+			"node_position": {
+				"x": -381.924988,
+				"y": -159.699524
+			},
+			"parameters": {
+				"iterations": 7,
+				"persistence": 0.8,
+				"scale_x": 5,
+				"scale_y": 5
+			},
+			"seed_int": 3501024000,
+			"type": "perlin"
+		},
+		{
+			"name": "warp",
+			"node_position": {
+				"x": 211.075012,
+				"y": 200.300476
+			},
+			"parameters": {
+				"amount": 0.025,
+				"eps": 0.1,
+				"mode": 0
+			},
+			"seed_int": 0,
+			"type": "warp"
+		},
+		{
+			"name": "warp_2",
+			"node_position": {
+				"x": 230.64595,
+				"y": -124.890739
+			},
+			"parameters": {
+				"amount": 0.025,
+				"eps": 0.1,
+				"mode": 0
+			},
+			"seed_int": 0,
+			"type": "warp"
+		}
+	],
+	"parameters": {
+
+	},
+	"seed_int": 0,
+	"shortdesc": "",
+	"type": "graph"
+}
